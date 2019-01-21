@@ -1,0 +1,53 @@
+<%-include('../../partials/admin/head')%>
+<h1>Comments</h1>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>owner</th>
+        <th>Status</th>
+        <th>Date</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <!-- {{#each comments}} -->
+    <% comments.forEach(function(comment){%>
+    
+    
+
+        <tr>
+            <th><%=comment.id%></th>
+            <td><%=comment.user.firstName%></td>
+
+            <td>
+
+                <!-- <input data-id="<%=comment.id%>"  type="checkbox" name="approveComment" /> -->
+                <input type="checkbox" name="approveComment">
+
+            </td>
+
+
+
+
+            <td><%=generateDate( comment.date,'MMMM Do YYYY')%></td>
+            <td>
+
+                <form action="/admin/comments/<%=comment.id%>?_method=DELETE" method="post">
+
+                    <button type="submit" class="btn btn-danger">Delete</button>
+
+                </form>
+
+
+            </td>
+         </tr>
+
+         <%})%>
+
+    <!-- {{/each}} -->
+
+    </tbody>
+</table>
+<%-include('../../partials/admin/body')%>

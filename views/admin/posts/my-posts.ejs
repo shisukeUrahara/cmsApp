@@ -1,0 +1,61 @@
+<%-include('../../partials/admin/head')%>
+<h1>ALL POSTS</h1>
+
+
+<table class="table table-bordered">
+
+    <thead>
+    <tr>
+
+        <th>Id</th>
+        <th>File</th>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Category</th>
+        <th>Allow Comments</th>
+        <th>Date</th>
+
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <!-- {{#each posts}} -->
+    <%posts.forEach(function(post){%>
+
+        <tr>
+
+            <td><%=post.id%></td>
+            <td><img height="50" class="img-responsive" src="/uploads/<%=post.file%>" alt=""></td>
+            <td><%=post.title%></td>
+            <td><%=post.status%></td>
+            <td><%=post.category.name%></td>
+            <td><%=post.allowComments%></td>
+            <td><a href="/post/<%=post.id%>">View</a></td>
+            <td><%= generateDate(post.date,'MMMM Do YYYY')%></td>
+            <td><a href="/admin/posts/edit/<%=post.id%>" class="btn btn-info">Edit</a></td>
+            <td>
+
+                <form action="/admin/posts/<%=post.id%>?_method=DELETE" method="post">
+
+                    <button type="submit" class="btn btn-danger">DELETE</button>
+                </form>
+
+
+
+            </td>
+
+        </tr>
+
+        <%})%>
+
+
+    <!-- {{/each}} -->
+    </tbody>
+
+
+
+</table>
+
+
+<%-include('../../partials/admin/body')%>

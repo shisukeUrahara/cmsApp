@@ -1,0 +1,57 @@
+<div class="row">
+
+  <!-- Blog Entries Column -->
+  <div class="col-md-8">
+
+      <h1 class="my-4">Home
+
+      </h1>
+     
+
+
+      <!-- {{#each posts}} -->
+      <% posts.forEach(function(post){%>
+
+      <!-- Blog Post -->
+      <div class="card mb-4">
+          <img class="card-img-top" src="/uploads/<%=post.file%>" alt="Card image cap">
+          <div class="card-body">
+              <h2 class="card-title"><%=post.title%></h2>
+              <p class="card-text"><%=post.body%></p>
+              <a href="/post/<%=post.id%>" class="btn btn-primary">Read More &rarr;</a>
+          </div>
+          <div class="card-footer text-muted">
+              Posted on <%=generateDate (post.date ,"MMMM Do YYYY")%> by
+              <a href="#">Start Bootstrap</a>
+          </div>
+      </div>
+      <% }) %>
+      
+
+      <!-- {{/each}} -->
+
+
+
+      <!-- Pagination -->
+      <ul class="pagination justify-content-center mb-4">
+
+          {{#paginate current=current pages=pages}}{{/paginate}}
+
+      </ul>
+
+  </div>
+
+
+
+  <!-- Sidebar Widgets Column -->
+
+  <!-- {{> home/sidebar}} -->
+  <%-include('../partials/home/sidebar')%>
+  
+
+  
+
+
+
+</div>
+<!-- /.row -->

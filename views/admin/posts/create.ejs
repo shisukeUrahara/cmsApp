@@ -1,0 +1,82 @@
+<!-- including the basic head syntax  -->
+<%-include('../../partials/admin/head')%>
+
+
+
+
+
+
+<h1>Create Post</h1>
+
+
+<% if (errors.length>0) { %>
+<% errors.forEach(function(error) { %>
+    <div class="alert alert-danger">
+
+        <%=error.message%>
+
+    </div>
+    <% }) %>
+    <% } %>
+
+
+
+<form action="/admin/posts/create" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input required name="title" type="text" class="form-control" id="title" placeholder="Enter title" >
+    </div>
+
+    <div class="form-group">
+        <label for="file">File Upload</label>
+        <input type="file" name="file" class="form-control" >
+    </div>
+
+    <div class="form-group">
+        <label for="status">Category</label>
+        <select name="category" id="status" class="form-control">
+
+
+            <!-- {{#each categories}} -->
+            <% categories.forEach(function(category){%>
+              
+
+            <option value="<%=category.id%>"><%=category.name%></option>
+            <%})%>
+
+            <!-- {{/each}} -->
+
+        </select>
+    </div>
+
+
+    <div class="form-group">
+        <label for="status">Status</label>
+        <select name="status" id="status" class="form-control">
+            <option value="public">Public</option>
+            <option value="private">Private</option>
+            <option value="draft">Draft</option>
+        </select>
+    </div>
+
+
+
+    <div class="form-check">
+        <label for="allowComments" class="form-check-label">
+        <input name="allowComments" type="checkbox" class="form-check-input" id="allowComments">
+            Allow Comments
+        </label>
+    </div>
+
+    <div class="form-group">
+        <label for="body">Body</label>
+        <textarea  required name="body" cols="30" rows="10" class="form-control" id="body" placeholder="Enter Description"></textarea>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Create Post</button>
+
+
+</form>
+
+<%-include('../../partials/admin/body')%>

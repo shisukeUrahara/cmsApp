@@ -1,0 +1,26 @@
+<% if (success_message!='') { %>
+<div class="alert alert-success">
+
+        <%=success_message%>
+
+    </div>
+
+    <% } %>
+
+
+    <% if (update_message!='') { %>
+<div class="alert alert-info">
+
+        <%=update_message%>
+
+    </div>
+    <% } %>
+
+    <% if (delete_message!='') { %>
+    <div class="alert alert-danger">
+
+        <%=delete_message%>
+
+    </div>
+    <% } %>
+
